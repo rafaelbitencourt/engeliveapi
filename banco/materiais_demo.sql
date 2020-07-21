@@ -1,3 +1,4 @@
+insert into tipos_materiais(id, nome, marcador, cor) values (1, 'Padrão', 1, ' ');
 insert into materiais(idtipo, nome, descricao) values (1, '10.001.00 - Cal', 				    '10.001.00 - Cal');
 insert into materiais(idtipo, nome, descricao) values (1, '10.002.00 - Argamassas', 			    '10.002.00 - Argamassas');
 insert into materiais(idtipo, nome, descricao) values (1, '10.003.00 - Outras argamassas', 		    '10.003.00 - Outras argamassas');
