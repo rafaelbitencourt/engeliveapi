@@ -8,6 +8,14 @@ exports.create = (req, res) => {
     }
 
     var dados = req.body;
+
+    if (!req.file) {
+        res.status(400).send({
+            message: "É necessário informar a planta."
+        });
+        return;
+    }
+
     dados.imagem = req.file.buffer;
 
     Plantas.create(
