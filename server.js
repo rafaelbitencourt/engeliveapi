@@ -1,6 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const routesProjetos = require('./src/app/routes/projetos.routes');
+const routesPlantas = require('./src/app/routes/plantas.routes');
+const routesMateriais = require('./src/app/routes/materiais.routes');
+const routesPlantasMateriais = require('./src/app/routes/plantas_materiais.routes');
+
 
 const app = express();
 
@@ -13,15 +18,10 @@ app.get("/", (req, res) => {
     res.json({ message: "API EngeLive." });
 });
 
-const tabelasCrud = [
-    'materiais',
-    'plantas_materiais',
-    'projetos',
-    'tipos_materiais'
-];
-
-require("./routes/models.routes.js")(app, tabelasCrud);
-require("./routes/plantas.routes.js")(app);
+app.use(routesProjetos);
+app.use(routesPlantas);
+app.use(routesMateriais);
+app.use(routesPlantasMateriais);
 
 app.listen(3001, () => {
     console.log("O serviço está executando na porta 3001.");
