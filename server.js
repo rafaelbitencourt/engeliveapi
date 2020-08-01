@@ -6,7 +6,6 @@ const routesPlantas = require('./src/app/routes/plantas.routes');
 const routesMateriais = require('./src/app/routes/materiais.routes');
 const routesPlantasMateriais = require('./src/app/routes/plantas_materiais.routes');
 
-
 const app = express();
 
 app.use(cors());
@@ -17,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "API EngeLive." });
 });
+
+require('./src/app/routes/auth.routes')(app);
 
 app.use(routesProjetos);
 app.use(routesPlantas);
