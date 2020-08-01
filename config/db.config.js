@@ -1,10 +1,3 @@
-// module.exports = {
-//     HOST: "localhost",
-//     USER: "root",
-//     PASSWORD: "171615",
-//     DB: "engelive"
-// };
-
 module.exports = {
     username: 'root',
     password: '171615',
