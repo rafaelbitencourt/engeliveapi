@@ -1,4 +1,4 @@
-const { Projetos }  = require('../models');
+const { Projetos } = require('../models');
 
 class ProjetosController {
 
@@ -19,7 +19,7 @@ class ProjetosController {
 
     async findAll(req, res) {
         try {
-            const projetos = await Projetos.findAll();
+            const projetos = await Projetos.scope({ method: ['tenant', req.tenantId] }).findAll();
 
             return res.json(projetos);
         } catch (err) {

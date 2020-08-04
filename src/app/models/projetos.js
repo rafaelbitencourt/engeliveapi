@@ -14,6 +14,21 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATEONLY,
             allowNull: false
         }
+    }, {
+        defaultScope: {
+            where: {
+                idtenant: 0
+            }
+        },
+        scopes: {
+            tenant(value) {
+                return {
+                    where: {
+                        idtenant: value
+                    }
+                }
+            }
+        }
     });
 
     return Projetos;

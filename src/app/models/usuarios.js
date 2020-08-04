@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
+        idtenant: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         usuario: {
             type: DataTypes.STRING(45),
             allowNull: false
