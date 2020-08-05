@@ -6,13 +6,14 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
-        idprojeto: {
+        idtenant: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            // references: {
-            //     model: Projetos,
-            //     key: 'id'
-            // }
+            defaultValue: 0
+        },
+        idprojeto: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         descricao: {
             type: DataTypes.STRING(500),
@@ -21,6 +22,21 @@ module.exports = (sequelize, DataTypes) => {
         imagem: {
             type: DataTypes.BLOB('long'),
             allowNull: false
+        }
+    }, {
+        defaultScope: {
+            where: {
+                idtenant: 0
+            }
+        },
+        scopes: {
+            tenant(value) {
+                return {
+                    where: {
+                        idtenant: value
+                    }
+                }
+            }
         }
     });
 

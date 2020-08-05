@@ -1,6 +1,7 @@
 const { Plantas } = require('../models');
+const BaseController = require('./base.controller');
 
-class PlantasController {
+class PlantasController extends BaseController {
 
     async create(req, res) {
         try {
@@ -21,17 +22,7 @@ class PlantasController {
         
             dados.imagem = req.file.buffer;
 
-            const plantas = await Plantas.create(dados);
-
-            return res.json(plantas);
-        } catch (err) {
-            return res.status(400).json({ error: err.message });
-        }
-    }
-
-    async findAll(req, res) {
-        try {
-            const plantas = await Plantas.findAll();
+            const plantas = await this.getModel(req.tenantId).create(dados);
 
             return res.json(plantas);
         } catch (err) {
@@ -41,7 +32,7 @@ class PlantasController {
 
     async findPorProjeto(req, res) {
         try {
-            const plantas = await Plantas.findAll({
+            const plantas = await this.getModel(req.tenantId).findAll({
                 attributes: { exclude: ['imagem'] },
                 where: {
                     idprojeto: req.params.id
@@ -53,46 +44,6 @@ class PlantasController {
             return res.status(400).json({ error: err.message });
         }
     }
-
-    async findOne(req, res) {
-        try {
-            const plantas = await Plantas.findByPk(req.params.id);
-
-            return res.json(plantas);
-        } catch (err) {
-            return res.status(400).json({ error: err.message });
-        }
-    }
-
-    async update(req, res) {
-        try {
-            if (!req.body) {
-                res.status(400).json({
-                    message: "O conteúdo não pode ser vazio."
-                });
-            }
-
-            const plantas = await Plantas.findByPk(req.params.id);
-
-            await plantas.update(req.body);
-
-            return res.json({ plantas });
-        } catch (err) {
-            return res.status(400).json({ error: err.message });
-        }
-    }
-
-    async delete(req, res) {
-        try {
-            const plantas = await Plantas.findByPk(req.params.id);
-
-            await plantas.destroy();
-
-            return res.json();
-        } catch (err) {
-            return res.status(400).json({ error: err.message });
-        }
-    }
 }
 
-module.exports = new PlantasController();
+module.exports = new PlantasController(Plantas);
