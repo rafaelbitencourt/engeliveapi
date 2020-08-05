@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
+        idtenant: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         nome: {
             type: DataTypes.STRING(100),
             allowNull: false
@@ -30,6 +35,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
-
+    
     return Projetos;
 };

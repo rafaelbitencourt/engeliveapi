@@ -4,14 +4,14 @@ const { authJwt } = require("../middlewares");
 
 const routes = Router();
 
-routes.get('/projetos', [authJwt.verifyToken], ProjetosController.findAll);
+routes.get('/projetos', [authJwt.verifyToken], ProjetosController.findAll.bind(ProjetosController));
 
-routes.get('/projetos/:id', [authJwt.verifyToken], ProjetosController.findOne);
+routes.get('/projetos/:id', [authJwt.verifyToken], ProjetosController.findOne.bind(ProjetosController));
 
-routes.post('/projetos', [authJwt.verifyToken], ProjetosController.create);
+routes.post('/projetos', [authJwt.verifyToken], ProjetosController.create.bind(ProjetosController));
 
-routes.put('/projetos/:id', [authJwt.verifyToken], ProjetosController.update);
+routes.put('/projetos/:id', [authJwt.verifyToken], ProjetosController.update.bind(ProjetosController));
 
-routes.delete('/projetos/:id', [authJwt.verifyToken], ProjetosController.delete);
+routes.delete('/projetos/:id', [authJwt.verifyToken], ProjetosController.delete.bind(ProjetosController));
 
 module.exports = routes;
