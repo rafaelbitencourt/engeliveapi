@@ -11,6 +11,12 @@ class BaseController {
             model.idtenant = idtenant;
         });
 
+        model.addHook('beforeBulkCreate', function (models) {
+            models.forEach(function(model) {
+                model.idtenant = idtenant;
+            });            
+        });
+
         return model;
     }
 

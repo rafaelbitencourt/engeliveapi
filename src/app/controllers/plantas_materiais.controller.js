@@ -1,6 +1,7 @@
 const { Plantas_Materiais } = require('../models');
+const BaseController = require('./base.controller');
 
-class PlantasMateriaisController {
+class PlantasMateriaisController extends BaseController {
 
     async create(req, res) {
         try {
@@ -9,15 +10,17 @@ class PlantasMateriaisController {
                     message: "O conteúdo não pode ser vazio."
                 });
             }
+
+            const model = this.getModel(req.tenantId);
         
-            await Plantas_Materiais.destroy({
+            await model.destroy({
                 where: {
                     idplanta: req.body.idplanta
                 }
             });
 
-            const materiais = await Plantas_Materiais.bulkCreate(req.body.materiais);
-
+            const materiais = await model.bulkCreate(req.body.materiais);
+            
             return res.json(materiais);
         } catch (err) {
             return res.status(400).json({ error: err.message });
@@ -26,7 +29,7 @@ class PlantasMateriaisController {
 
     async findPorPlanta(req, res) {
         try {
-            const plantas = await Plantas_Materiais.findAll({
+            const plantas = await this.getModel(req.tenantId).findAll({
                 where: {
                     idplanta: req.params.id
                 }
@@ -39,4 +42,4 @@ class PlantasMateriaisController {
     }
 }
 
-module.exports = new PlantasMateriaisController();
+module.exports = new PlantasMateriaisController(Plantas_Materiais);

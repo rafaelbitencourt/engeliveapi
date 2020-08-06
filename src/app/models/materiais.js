@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
+        idtenant: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         idtipo: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -16,6 +21,21 @@ module.exports = (sequelize, DataTypes) => {
         },
         descricao: {
             type: DataTypes.STRING(1000)
+        }
+    }, {
+        defaultScope: {
+            where: {
+                idtenant: 0
+            }
+        },
+        scopes: {
+            tenant(value) {
+                return {
+                    where: {
+                        idtenant: value
+                    }
+                }
+            }
         }
     });
 

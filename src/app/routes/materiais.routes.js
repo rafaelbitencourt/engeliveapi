@@ -1,16 +1,17 @@
 const { Router } = require('express');
 const MateriaisController = require('../controllers/materiais.controller');
+const { authJwt } = require("../middlewares");
 
 const routes = Router();
 
-routes.get('/materiais', MateriaisController.findAll);
+routes.get('/materiais', [authJwt.verifyToken], MateriaisController.findAll.bind(MateriaisController));
 
-routes.get('/materiais/:id', MateriaisController.findOne);
+routes.get('/materiais/:id', [authJwt.verifyToken], MateriaisController.findOne.bind(MateriaisController));
 
-routes.post('/materiais', MateriaisController.create);
+routes.post('/materiais', [authJwt.verifyToken], MateriaisController.create.bind(MateriaisController));
 
-routes.put('/materiais/:id', MateriaisController.update);
+routes.put('/materiais/:id', [authJwt.verifyToken], MateriaisController.update.bind(MateriaisController));
 
-routes.delete('/materiais/:id', MateriaisController.delete);
+routes.delete('/materiais/:id', [authJwt.verifyToken], MateriaisController.delete.bind(MateriaisController));
 
 module.exports = routes;

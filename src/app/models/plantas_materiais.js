@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
+        idtenant: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         idplanta: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -21,6 +26,21 @@ module.exports = (sequelize, DataTypes) => {
         coordenadaY: {
             type: DataTypes.INTEGER,
             allowNull: false
+        }
+    }, {
+        defaultScope: {
+            where: {
+                idtenant: 0
+            }
+        },
+        scopes: {
+            tenant(value) {
+                return {
+                    where: {
+                        idtenant: value
+                    }
+                }
+            }
         }
     });
 
