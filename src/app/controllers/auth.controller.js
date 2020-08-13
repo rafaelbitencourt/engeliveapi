@@ -1,22 +1,31 @@
-const { Usuarios } = require("../models");
+const { Usuarios, Tenants } = require("../models");
 const config = require("../../../config/auth.config.js");
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const tenant = require("../models/tenant");
 
 exports.signup = (req, res) => {
     // Save User to Database
-    Usuarios.create({
-        usuario: req.body.usuario,
-        email: req.body.email,
-        senha: bcrypt.hashSync(req.body.senha, 8)
-    })
-        .then(user => {
-            res.send({ message: "User was registered successfully!" });
+    Tenants.create()
+        .then(tenant => {
+            Usuarios.create({
+                usuario: req.body.usuario,
+                email: req.body.email,
+                senha: bcrypt.hashSync(req.body.senha, 8),
+                idtenant: tenant.dataValues.id
+            })
+                .then(user => {
+                    res.status(200).send({ message: "Conta criada com sucesso!" });
+                })
+                .catch(err => {
+                    res.status(500).send({ message: err.message });
+                });
         })
         .catch(err => {
             res.status(500).send({ message: err.message });
         });
+    
 };
 
 exports.signin = (req, res) => {
