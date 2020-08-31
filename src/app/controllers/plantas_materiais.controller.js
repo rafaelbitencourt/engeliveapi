@@ -23,7 +23,7 @@ class PlantasMateriaisController extends BaseController {
             
             return res.json(materiais);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -37,7 +37,7 @@ class PlantasMateriaisController extends BaseController {
 
             return res.json(plantas);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 }

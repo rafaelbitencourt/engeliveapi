@@ -26,7 +26,7 @@ class PlantasController extends BaseController {
 
             return res.json(plantas);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -41,7 +41,7 @@ class PlantasController extends BaseController {
 
             return res.json(plantas);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 }

@@ -31,7 +31,7 @@ class BaseController {
 
             return res.json(result);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -41,7 +41,7 @@ class BaseController {
 
             return res.json(result);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -49,9 +49,13 @@ class BaseController {
         try {
             const result = await this.getModel(req.tenantId).findByPk(req.params.id);
 
+            if(!result) {
+                return res.status(400).json({ message: 'Registro não encontrado.' });
+            }
+
             return res.json(result);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -69,7 +73,7 @@ class BaseController {
 
             return res.json({ result });
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 
@@ -81,7 +85,7 @@ class BaseController {
 
             return res.json();
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json(err);
         }
     }
 }
