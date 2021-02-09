@@ -8,11 +8,7 @@ const routesPlantasMateriais = require('./src/app/routes/plantas_materiais.route
 
 const app = express();
 
-const corsOptions = {
-    origin: 'https://engelive.herokuapp.com',
-}
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +24,6 @@ app.use(routesPlantas);
 app.use(routesMateriais);
 app.use(routesPlantasMateriais);
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log("O serviço está executando na porta 3001.");
 });
