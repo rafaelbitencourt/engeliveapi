@@ -8,7 +8,11 @@ const routesPlantasMateriais = require('./src/app/routes/plantas_materiais.route
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://engelive.herokuapp.com',
+}
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
