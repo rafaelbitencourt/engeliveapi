@@ -1,4 +1,4 @@
-const { Usuarios, Tenants } = require("../models");
+const { usuarios, tenants } = require("../models");
 const config = require("../../../config/auth.config.js");
 
 var jwt = require("jsonwebtoken");
@@ -7,9 +7,9 @@ const tenant = require("../models/tenant");
 
 exports.signup = (req, res) => {
     // Save User to Database
-    Tenants.create()
+    tenants.create()
         .then(tenant => {
-            Usuarios.create({
+            usuarios.create({
                 usuario: req.body.usuario,
                 email: req.body.email,
                 senha: bcrypt.hashSync(req.body.senha, 8),
@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-    Usuarios.findOne({
+    usuarios.findOne({
         where: {
             usuario: req.body.usuario
         }
