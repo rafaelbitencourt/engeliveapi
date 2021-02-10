@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Plantas_Materiais = sequelize.define('plantas_Materiais', {
+    const Plantas_Materiais = sequelize.define('plantas_materiais', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        coordenadaX: {
+        coordenadax: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        coordenadaY: {
+        coordenaday: {
             type: DataTypes.INTEGER,
             allowNull: false
         }

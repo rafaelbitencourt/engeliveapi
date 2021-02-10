@@ -1,4 +1,4 @@
-const { plantas_Materiais } = require('../models');
+const { plantas_materiais } = require('../models');
 const BaseController = require('./base.controller');
 
 class PlantasMateriaisController extends BaseController {
@@ -42,4 +42,4 @@ class PlantasMateriaisController extends BaseController {
     }
 }
 
-module.exports = new PlantasMateriaisController(plantas_Materiais);
+module.exports = new PlantasMateriaisController(plantas_materiais);
