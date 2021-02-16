@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         descricao: {
             type: DataTypes.STRING(1000)
+        },
+        imagem: {
+            type: DataTypes.BLOB('long'),
+            allowNull: false
         }
     }, {
         defaultScope: {

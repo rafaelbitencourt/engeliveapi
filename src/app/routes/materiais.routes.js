@@ -1,6 +1,11 @@
 const { Router } = require('express');
 const MateriaisController = require('../controllers/materiais.controller');
 const { authJwt } = require("../middlewares");
+const multer = require('multer');
+
+var storage = multer.memoryStorage();
+
+const upload = multer({ storage: storage });
 
 const routes = Router();
 
@@ -8,7 +13,7 @@ routes.get('/materiais', [authJwt.verifyToken], MateriaisController.findAll.bind
 
 routes.get('/materiais/:id', [authJwt.verifyToken], MateriaisController.findOne.bind(MateriaisController));
 
-routes.post('/materiais', [authJwt.verifyToken], MateriaisController.create.bind(MateriaisController));
+routes.post('/materiais', [authJwt.verifyToken, upload.single('imagem')], MateriaisController.create.bind(MateriaisController));
 
 routes.put('/materiais/:id', [authJwt.verifyToken], MateriaisController.update.bind(MateriaisController));
 
