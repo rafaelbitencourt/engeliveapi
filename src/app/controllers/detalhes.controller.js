@@ -1,7 +1,7 @@
-const { materiais }  = require('../models');
+const { detalhes }  = require('../models');
 const BaseController = require('./base.controller');
 
-class MateriaisController extends BaseController {
+class DetalhesController extends BaseController {
     async create(req, res) {
         try {
             if (!req.body) {
@@ -21,13 +21,13 @@ class MateriaisController extends BaseController {
         
             dados.imagem = req.file.buffer;
 
-            const materiais = await this.getModel(req.tenantId).create(dados);
+            const detalhes = await this.getModel(req.tenantId).create(dados);
 
-            return res.json(materiais);
+            return res.json(detalhes);
         } catch (err) {
             return res.status(500).json(err);
         }
     }
 }
 
-module.exports = new MateriaisController(materiais);
+module.exports = new DetalhesController(detalhes);

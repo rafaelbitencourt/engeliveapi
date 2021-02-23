@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Plantas_Materiais = sequelize.define('plantas_materiais', {
+    const Tipos_Projetos = sequelize.define('tipos_projetos', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,20 +11,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idplanta: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        idmaterial: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        coordenadax: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        coordenaday: {
-            type: DataTypes.INTEGER,
+        nome: {
+            type: DataTypes.STRING(100),
             allowNull: false
         }
     }, {
@@ -43,6 +31,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
-
-    return Plantas_Materiais;
+    
+    return Tipos_Projetos;
 };
