@@ -1,12 +1,12 @@
-const { projetos_tipos } = require('../models');
+const { projetos } = require('../models');
 const BaseController = require('./base.controller');
 
-class ProjetosTiposController extends BaseController {
-    async findPorProjeto(req, res) {
+class ProjetosController extends BaseController {
+    async findPorObra(req, res) {
         try {
             const projetosTipos = await this.getModel(req.tenantId).findAll({
                 where: {
-                    idprojeto: req.params.id
+                    idobra: req.params.id
                 }
             });
 
@@ -17,4 +17,4 @@ class ProjetosTiposController extends BaseController {
     }
 }
 
-module.exports = new ProjetosTiposController(projetos_tipos);
+module.exports = new ProjetosController(projetos);

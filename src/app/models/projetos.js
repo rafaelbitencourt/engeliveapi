@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Projetos_Tipos = sequelize.define('projetos_tipos', {
+    const Projetos = sequelize.define('projetos', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idprojeto: {
+        idobra: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -36,5 +36,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     
-    return Projetos_Tipos;
+    return Projetos;
 };

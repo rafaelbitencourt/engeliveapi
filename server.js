@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const routesObras = require('./src/app/routes/obras.routes');
-const routesProjetosTipos = require('./src/app/routes/projetos_tipos.routes');
+const routesProjetos = require('./src/app/routes/projetos.routes');
 const routesPlantas = require('./src/app/routes/plantas.routes');
 const routesDetalhes = require('./src/app/routes/detalhes.routes');
 const routesPlantasDetalhes = require('./src/app/routes/plantas_detalhes.routes');
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 require('./src/app/routes/auth.routes')(app);
 
 app.use(routesObras);
-app.use(routesProjetosTipos);
+app.use(routesProjetos);
 app.use(routesPlantas);
 app.use(routesDetalhes);
 app.use(routesPlantasDetalhes);
