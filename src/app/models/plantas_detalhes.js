@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Projetos = sequelize.define('projetos', {
+    const Plantas_Detalhes = sequelize.define('plantas_detalhes', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,11 +11,19 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idobra: {
+        idplanta: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        idtipoprojeto: {
+        iddetalhe: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        coordenadax: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        coordenaday: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
@@ -36,11 +44,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    Projetos.associate = function(models) {
-        Projetos.belongsTo(models['tipos_projetos'], {
-            foreignKey: 'idtipoprojeto'
-        });
-    };
-    
-    return Projetos;
+    return Plantas_Detalhes;
 };

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Materiais = sequelize.define('materiais', {
+    const Obras = sequelize.define('obras', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,19 +11,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idtipo: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         nome: {
-            type: DataTypes.STRING(200),
+            type: DataTypes.STRING(100),
             allowNull: false
         },
-        descricao: {
-            type: DataTypes.STRING(1000)
-        },
-        imagem: {
-            type: DataTypes.BLOB('long'),
+        previsao: {
+            type: DataTypes.DATEONLY,
             allowNull: false
         }
     }, {
@@ -42,6 +35,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
-
-    return Materiais;
+    
+    return Obras;
 };

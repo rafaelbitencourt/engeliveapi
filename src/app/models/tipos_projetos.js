@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Projetos = sequelize.define('projetos', {
+    const Tipos_Projetos = sequelize.define('tipos_projetos', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,12 +11,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idobra: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        idtipoprojeto: {
-            type: DataTypes.INTEGER,
+        nome: {
+            type: DataTypes.STRING(100),
             allowNull: false
         }
     }, {
@@ -35,12 +31,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
-
-    Projetos.associate = function(models) {
-        Projetos.belongsTo(models['tipos_projetos'], {
-            foreignKey: 'idtipoprojeto'
-        });
-    };
     
-    return Projetos;
+    return Tipos_Projetos;
 };

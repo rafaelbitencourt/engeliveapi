@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Plantas_Materiais = sequelize.define('plantas_materiais', {
+    const Detalhes = sequelize.define('detalhes', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,20 +11,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
-        idplanta: {
+        idprojeto: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        idmaterial: {
-            type: DataTypes.INTEGER,
+        nome: {
+            type: DataTypes.STRING(200),
             allowNull: false
         },
-        coordenadax: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        coordenaday: {
-            type: DataTypes.INTEGER,
+        imagem: {
+            type: DataTypes.BLOB('long'),
             allowNull: false
         }
     }, {
@@ -44,5 +40,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    return Plantas_Materiais;
+    return Detalhes;
 };

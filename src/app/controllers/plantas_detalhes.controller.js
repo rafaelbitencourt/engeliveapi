@@ -1,7 +1,7 @@
-const { plantas_materiais } = require('../models');
+const { plantas_detalhes } = require('../models');
 const BaseController = require('./base.controller');
 
-class PlantasMateriaisController extends BaseController {
+class PlantasDetalhesController extends BaseController {
 
     async create(req, res) {
         try {
@@ -19,9 +19,9 @@ class PlantasMateriaisController extends BaseController {
                 }
             });
 
-            const materiais = await model.bulkCreate(req.body.materiais);
+            const detalhes = await model.bulkCreate(req.body.detalhes);
             
-            return res.json(materiais);
+            return res.json(detalhes);
         } catch (err) {
             return res.status(500).json(err);
         }
@@ -42,4 +42,4 @@ class PlantasMateriaisController extends BaseController {
     }
 }
 
-module.exports = new PlantasMateriaisController(plantas_materiais);
+module.exports = new PlantasDetalhesController(plantas_detalhes);

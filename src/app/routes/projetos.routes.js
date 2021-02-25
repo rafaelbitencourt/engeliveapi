@@ -8,6 +8,8 @@ routes.get('/projetos', [authJwt.verifyToken], ProjetosController.findAll.bind(P
 
 routes.get('/projetos/:id', [authJwt.verifyToken], ProjetosController.findOne.bind(ProjetosController));
 
+routes.get(`/obra/:id/projetos`, [authJwt.verifyToken], ProjetosController.findPorObra.bind(ProjetosController));
+
 routes.post('/projetos', [authJwt.verifyToken], ProjetosController.create.bind(ProjetosController));
 
 routes.put('/projetos/:id', [authJwt.verifyToken], ProjetosController.update.bind(ProjetosController));
