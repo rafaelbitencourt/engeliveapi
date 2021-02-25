@@ -13,6 +13,8 @@ routes.get('/detalhes', [authJwt.verifyToken], DetalhesController.findAll.bind(D
 
 routes.get('/detalhes/:id', [authJwt.verifyToken], DetalhesController.findOne.bind(DetalhesController));
 
+routes.get(`/projeto/:id/detalhes`, [authJwt.verifyToken], DetalhesController.findPorProjeto.bind(DetalhesController));
+
 routes.post('/detalhes', [authJwt.verifyToken, upload.single('imagem')], DetalhesController.create.bind(DetalhesController));
 
 routes.put('/detalhes/:id', [authJwt.verifyToken], DetalhesController.update.bind(DetalhesController));

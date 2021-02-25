@@ -39,10 +39,10 @@ CREATE TABLE projetos (
 CREATE TABLE detalhes (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
   idtenant int NOT NULL,
-  idobra int NOT NULL,
+  idprojeto int NOT NULL,
   nome varchar(200) NOT NULL,
   imagem BYTEA,
-  CONSTRAINT fk_detalhe_obra FOREIGN KEY (idobra) REFERENCES obras (id) ON DELETE CASCADE,
+  CONSTRAINT fk_detalhe_projeto FOREIGN KEY (idprojeto) REFERENCES projetos (id) ON DELETE CASCADE,
   CONSTRAINT fk_detalhe_tenant FOREIGN KEY (idtenant) REFERENCES tenants (id)
 );
 

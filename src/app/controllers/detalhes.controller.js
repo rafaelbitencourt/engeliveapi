@@ -28,6 +28,21 @@ class DetalhesController extends BaseController {
             return res.status(500).json(err);
         }
     }
+
+    async findPorProjeto(req, res) {
+        try {
+            const detalhes = await this.getModel(req.tenantId).findAll({
+                attributes: { exclude: ['imagem'] },
+                where: {
+                    idprojeto: req.params.id
+                }
+            });
+
+            return res.json(detalhes);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
 }
 
 module.exports = new DetalhesController(detalhes);
