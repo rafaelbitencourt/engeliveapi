@@ -35,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
+
+    Projetos.associate = function(models) {
+        Projetos.belongsTo(models['tipos_projetos'], {
+            foreignKey: 'idtipoprojeto'
+        });
+    };
     
     return Projetos;
 };
