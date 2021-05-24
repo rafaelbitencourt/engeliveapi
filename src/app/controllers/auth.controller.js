@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const { usuarios, tenants } = require("../models");
 const config = require("../../../config/auth.config.js");
 
@@ -31,7 +32,9 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     usuarios.findOne({
         where: {
-            usuario: req.body.usuario
+            usuario: {
+                [Sequelize.Op.iLike]: req.body.usuario
+            }
         }
     })
         .then(user => {
