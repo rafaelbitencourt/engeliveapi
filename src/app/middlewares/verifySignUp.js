@@ -1,10 +1,13 @@
+const Sequelize = require('sequelize');
 const { usuarios } = require("../models");
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
     // Username
     usuarios.findOne({
         where: {
-            usuario: req.body.usuario
+            usuario: {
+                [Sequelize.Op.iLike]: req.body.usuario
+            }
         }
     }).then(user => {
         if (user) {
@@ -17,7 +20,9 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
         // Email
         usuarios.findOne({
             where: {
-                email: req.body.email
+                email: {
+                    [Sequelize.Op.iLike]: req.body.email
+                }
             }
         }).then(user => {
             if (user) {
