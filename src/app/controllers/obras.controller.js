@@ -12,12 +12,14 @@ class ObrasController extends BaseController {
                 include: [{ 
                     model: ProjetosController.getModel(req.tenantId),
                     attributes: ['id'],
+                    required: false,
                     include: [{
                         attributes: ['nome'],
                         model: TiposProjetosController.getModel(req.tenantId)
                     }, {
                         attributes: ['id', 'descricao'],
-                        model: PlantasController.getModel(req.tenantId)
+                        model: PlantasController.getModel(req.tenantId),
+                        required: false
                     }]
                 }]
             });
