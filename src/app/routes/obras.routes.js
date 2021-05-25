@@ -4,6 +4,8 @@ const { authJwt } = require("../middlewares");
 
 const routes = Router();
 
+routes.get('/menu', [authJwt.verifyToken], ObrasController.findMenu.bind(ObrasController));
+
 routes.get('/obras', [authJwt.verifyToken], ObrasController.findAll.bind(ObrasController));
 
 routes.get('/obras/:id', [authJwt.verifyToken], ObrasController.findOne.bind(ObrasController));

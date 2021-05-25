@@ -35,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
+
+    Obras.associate = function(models) {
+        Obras.hasMany(models['projetos'], {
+            foreignKey: 'idobra'
+        });
+    };
     
     return Obras;
 };

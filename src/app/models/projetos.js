@@ -40,6 +40,9 @@ module.exports = (sequelize, DataTypes) => {
         Projetos.belongsTo(models['tipos_projetos'], {
             foreignKey: 'idtipoprojeto'
         });
+        Projetos.hasMany(models['plantas'], {
+            foreignKey: 'idprojeto'
+        });
     };
     
     return Projetos;
