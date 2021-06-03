@@ -48,7 +48,7 @@ exports.signin = (req, res) => {
             );
 
             if (!passwordIsValid) {
-                return res.status(401).send({
+                return res.status(404).send({
                     accessToken: null,
                     message: "Usuário e/ou senha inválidos."
                 });
