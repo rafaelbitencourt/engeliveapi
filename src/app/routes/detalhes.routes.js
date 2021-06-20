@@ -17,7 +17,7 @@ routes.get(`/projeto/:id/detalhes`, [authJwt.verifyToken], DetalhesController.fi
 
 routes.post('/detalhes', [authJwt.verifyToken, upload.single('imagem')], DetalhesController.create.bind(DetalhesController));
 
-routes.put('/detalhes/:id', [authJwt.verifyToken], DetalhesController.update.bind(DetalhesController));
+routes.put('/detalhes/:id', [authJwt.verifyToken, upload.single('imagem')], DetalhesController.update.bind(DetalhesController));
 
 routes.delete('/detalhes/:id', [authJwt.verifyToken], DetalhesController.delete.bind(DetalhesController));
 
